@@ -1,0 +1,11 @@
+大,おお,ダイ,big
+学,まな,ガク,school
+校,こう,コウ,school
+先,さき,セン,Ahead
+生,なま,セイ,living
+山,やま,サン,mountain
+川,かわ,セン,river
+田,た＊だ,デン,rice field
+人,ひと,ジン,person
+上,うえ＊かみ,ジョウ,up
+中,なか,チュウ,during
