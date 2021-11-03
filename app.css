@@ -8,4 +8,26 @@ form {
 
 .button-panel {
     text-align: center;
+    font-size:10;
+    line-height: 0;
+}
+
+.question {
+    font-size:1000%;
+}
+
+.answer {
+    font-size: 200%;
+}
+
+.answer-button {
+    font-size: 500%;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
 }
