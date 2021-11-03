@@ -1,0 +1,18 @@
+男,おとこ,ダン,man
+女,おんな,ジョ,woman
+目,め,モク,eye
+口,くち・ぐち,コウ,mouth
+耳,みみ,ジ,ear
+足,あし,ソク,legs
+手,て,シュ,hands
+父,ちち・とう,フ,father
+母,はは・かあ,ボ,mother
+姉,あね・ねえ,シ,older sister
+兄,あに・にい,ケイ・キョウ,older brother
+妹,いもうと,マイ,younger sister
+弟,おとうと,ダイ,younger brother
+家,いえ・うち,カ,house
+族,ゾク,ゾク,Tribe
+両,リョウ,リョウ,both
+親,おや,シン,parent
+子,こ,シ,child

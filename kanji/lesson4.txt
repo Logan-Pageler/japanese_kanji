@@ -1,0 +1,5 @@
+大,おお,ダイ,big
+学,まな,ガク,school
+校,こう,コウ,school
+先,さき,セン,Ahead
+生,なま,セイ,living

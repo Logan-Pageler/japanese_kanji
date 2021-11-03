@@ -22,7 +22,7 @@ page = """
                 <p> Practice sections: (use format 1,3-4) </p>
                 <input type="text" name="units" value = {}> 
                 <button name="reset" value="reset"> Reset Accuracy </button>
-                <p> Units avaible: 1-3 </p>
+                <p> Units avaible: 4-11 </p>
                 <br><br>
             </div>
             <<>>
@@ -32,7 +32,7 @@ page = """
 """
 
 
-def generate(prev_ans, accuracy, button):
+def generate(prev_ans, accuracy, button, values):
     count = random.randrange(0, len(values))
 
     question = random.randrange(0, 1)
@@ -61,17 +61,19 @@ def generate(prev_ans, accuracy, button):
 
     text = (
         f"""
-            <p> {values[count][question]}
-            
-            <div>
-                <button name="button 1" value="1"> {answers[0]} </button>
-                <button name="button 2" value="2"> {answers[1]} </button>
+            <div class="button-panel">
+                <p> {values[count][question]}
+                
+                <div>
+                    <button name="button 1" value="1"> {answers[0]} </button>
+                    <button name="button 2" value="2"> {answers[1]} </button>
+                </div>
+                <div>
+                    <button name="button 3" value="3"> {answers[2]} </button>
+                    <button name="button 4" value="4"> {answers[3]} </button>
+                </div>
+                <input name="prev" type="hidden" value="{answers+[values[count][ans], f"{arr[0]}/{arr[1]}"]}"> 
             </div>
-            <div>
-                <button name="button 3" value="3"> {answers[2]} </button>
-                <button name="button 4" value="4"> {answers[3]} </button>
-            </div>
-            <input name="prev" type="hidden" value="{answers+[values[count][ans], f"{arr[0]}/{arr[1]}"]}"> 
             """
         + text
     )
@@ -79,41 +81,61 @@ def generate(prev_ans, accuracy, button):
     return text
 
 
-values = [line[:-1].split(",") for line in open("kanji.txt", "r").readlines()]
+lessons = []
+for i in range(4, 12):
+    print(i)
+    lessons += [
+        line[:-1].split(",")
+        for line in open(f"kanji/lesson{i}.txt", "r", encoding="utf-8").readlines()
+    ]
+print(lessons)
 
 
 @app.route("/", methods=["POST"])
 def post_something():
     new = "Something broke... try refreshing"
+    range = request.form.get("units")
+    range = "".join(range.split())
+    range = range.split(",")
+    values = []
+    for r in range:
+        try:
+            if "-" in r:
+                temp = r.split("-")
+                values += lessons[int(r[0]) : int(r[1])]
+            else:
+                values += lessons[int(r)]
+        except:
+            values = lessons
     if request.form.get("button 1"):
         prev_ans = [txt[1:-1] for txt in request.form.get("prev")[1:-1].split(", ")]
         new = page.replace(
             "<<>>",
-            generate(prev_ans, prev_ans[5], 0),
+            generate(prev_ans, prev_ans[5], 0, values),
         ).format(css, request.form.get("units"))
     elif request.form.get("button 2"):
         prev_ans = [txt[1:-1] for txt in request.form.get("prev")[1:-1].split(", ")]
         new = page.replace(
             "<<>>",
-            generate(prev_ans, prev_ans[5], 1),
+            generate(prev_ans, prev_ans[5], 1, values),
         ).format(css, request.form.get("units"))
     elif request.form.get("button 3"):
         prev_ans = [txt[1:-1] for txt in request.form.get("prev")[1:-1].split(", ")]
         new = page.replace(
             "<<>>",
-            generate(prev_ans, prev_ans[5], 2),
+            generate(prev_ans, prev_ans[5], 2, values),
         ).format(css, request.form.get("units"))
     elif request.form.get("button 4"):
         prev_ans = [txt[1:-1] for txt in request.form.get("prev")[1:-1].split(", ")]
         new = page.replace(
             "<<>>",
-            generate(prev_ans, prev_ans[5], 3),
+            generate(prev_ans, prev_ans[5], 3, values),
         ).format(css, request.form.get("units"))
     elif request.form.get("reset"):
         new = page.replace(
             "<<>>",
-            generate(None, "0/0", None),
-        ).format(css, "1-3")
+            generate(None, "0/0", None, values),
+        ).format(css, request.form.get("units"))
     return new
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
 
@@ -123,8 +145,8 @@ def post_something():
 def index():
     new = page.replace(
         "<<>>",
-        generate(None, "0/0", None),
-    ).format(css, "1-3")
+        generate(None, "0/0", None, lessons),
+    ).format(css, "4-11")
     return new
 
 

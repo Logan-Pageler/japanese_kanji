@@ -1,0 +1,17 @@
+行,い（く）,コウ,to go
+来,く（る）,ライ,to come
+帰,かえ（る）,キ,to go home
+食,た（べる）,ショク,to eat
+飲,の（む）,イン,to drink
+見,み（る）,ケン,to look
+聞,き（く）,ブン,to listen
+読,よ（む）,ドク,to read
+書,か（く）,ショ,to write
+話,はな（す）,ワ,to talk
+出,で（る）・で（かける）・だ（す）,シュッ,to leave
+会,あ（う）,カイ,to meet
+買,か（う）,バイ,to buy
+起,お（きる）,キ,to wake up
+寝,ね（る）,シン,to sleep
+作,つく（る）,サク,to make
+入,はい（る）・ い（れる）,ニュウ,to enter
